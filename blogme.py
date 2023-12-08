@@ -21,7 +21,7 @@ data.groupby(["source_id"])["article_id"].count()
 data.groupby(["source_id"])["engagement_reaction_count"].sum()
 
 #dropping the unwanted column
-data.drop("engagement_comment_plugin_count", axis=1)
+data=data.drop("engagement_comment_plugin_count", axis=1)
 
 #defining a function to create a list of flags
 #based on a certain keyword is present in the title or not
@@ -29,7 +29,7 @@ def keywordFlag(keyword):
     keyword_flag=[]
     for i in range(len(data)):
         try:
-            if keyword in data['title'][i]:
+            if keyword.lower() in data['title'][i].lower():
                 flag=1
             else:
                 flag=0
